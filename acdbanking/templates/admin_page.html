@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Admin</title>
+</head>
+<body>
+    <h2>Welcome Admin {{ username }} | ACD Safe Bank</h2>
+    {% if success_message %}
+        <p>{{ success_message }}</p>
+    {% endif %}
+    <a href="{% url 'create_customer' %}?admin_username={{ username }}" class="btn btn-primary">Create New Customer</a><br><br>
+    <a href="{% url 'delete_customer' %}" class="btn btn-danger">Delete Existing Customer</a><br><br>
+    <a href="{% url 'create_admin' %}?admin_username={{ username }}" class="btn btn-success">Create New Admin</a><br><br>
+    <a href="{% url 'delete_user' %}?admin_username={{ username }}" class="btn btn-danger">Delete Existing Admin</a><br><br>
+    <a href="{% url 'change_password' %}?username={{ username }}" class="btn btn-info">Change Password</a><br><br>
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a><br><br>
+</body>
+</html>

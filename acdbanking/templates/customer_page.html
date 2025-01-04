@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Page</title>
+    <style>
+        .details {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome {{ customer.c_fname }} {{ customer.c_lname }} | ACD Safe Bank</h2>
+    <a href="{% url 'change_customer_password' %}?customer_id={{ customer.c_id }}" class="btn btn-info">Change Password</a><br><br>
+    <button onclick="window.location.href='/logout'">Logout</button>
+    <form method="post">
+        {% csrf_token %}
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+        <h3>Address (Update if needed)</h3>
+        <label for="c_street">Street:</label><br>
+        <input type="text" id="c_street" name="c_street" value="{{ customer.c_street }}"><br>
+        <label for="c_city">City:</label><br>
+        <input type="text" id="c_city" name="c_city" value="{{ customer.c_city }}"><br>
+        <label for="c_state">State:</label><br>
+        <input type="text" id="c_state" name="c_state" value="{{ customer.c_state }}"><br>
+        <label for="c_zipcode">Zip Code:</label><br>
+        <input type="text" id="c_zipcode" name="c_zipcode" value="{{ customer.c_zipcode }}"><br>
+        <button type="submit">Update Address</button>
+    </form>
+    
+    {% if safe_acnt %}
+    <div class="details">
+        <h4>ACD Safe - Account 1</h4>
+        <p>Account Type: {{ safe_acnt.acct_type }}</p>
+        <p>Account Name: {{ safe_acnt.acct_name }}</p>
+        <p>Address: {{ safe_acnt.a_street }}, {{ safe_acnt.a_city }}, {{ safe_acnt.a_state }}, {{ safe_acnt.a_zipcode }}</p>
+    </div>
+    {% endif %}
+
+    {% if safe_acnt1 %}
+    <div class="details">
+        <h4>ACD Safe - Account 2</h4>
+        <p>Account Type: {{ safe_acnt1.acct_type }}</p>
+        <p>Account Name: {{ safe_acnt1.acct_name }}</p>
+        <p>Address: {{ safe_acnt1.a_street }}, {{ safe_acnt1.a_city }}, {{ safe_acnt1.a_state }}, {{ safe_acnt1.a_zipcode }}</p>
+    </div>
+    {% endif %}
+
+    {% if safe_acnt2 %}
+    <div class="details">
+        <h4>ACD Safe - Account 3</h4>
+        <p>Account Type: {{ safe_acnt2.acct_type }}</p>
+        <p>Account Name: {{ safe_acnt2.acct_name }}</p>
+        <p>Address: {{ safe_acnt2.a_street }}, {{ safe_acnt2.a_city }}, {{ safe_acnt2.a_state }}, {{ safe_acnt2.a_zipcode }}</p>
+    </div>
+    {% endif %}
+    
+    <!-- Checking Account details -->
+    {% if checking %}
+    <div class="details">
+        <h4>Checking Account - More Details</h4>
+        {% for checking in checking %}
+            <p>Account Number: {{ checking.acct_no }}</p>
+            <p>Date Opened: {{ checking.date_open }}</p>
+            <p>Service Charge: {{ checking.serv_charge }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Savings Account details -->
+    {% if savings %}
+    <div class="details">
+        <h4>Savings Account - More Details</h4>
+        {% for savings in savings %}
+            <p>Account Number: {{ savings.acct_no }}</p>
+            <p>Date Opened: {{ savings.date_open }}</p>
+            <p>Interest Rate: {{ savings.intrst_rate }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Loan Account details -->
+    {% if loan %}
+    <div class="details">
+        <h4>Loan Account - More Details</h4>
+        {% for loan in loan %}
+            <p>Account Number: {{ loan.acct_no }}</p>
+            <p>Loan Type: {{ loan.loan_type }}</p>
+            <p>Loan Amount: {{ loan.loan_amt }}</p>
+            <p>Loan Rate: {{ loan.loan_rate }}</p>
+            <p>Loan Months: {{ loan.loan_months }}</p>
+            <p>Loan Payment: {{ loan.loan_payment }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Personal Loan details -->
+    {% if personal %}
+    <div class="details">
+        <h4>Personal Loan - More Details</h4>
+        {% for personal in personal %}
+            <p>Personal Loan ID: {{ personal.pl_uid }}</p>
+            <p>Date Opened: {{ personal.date_open }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Student Loan details -->
+    {% if student %}
+    <div class="details">
+        <h4>Student Loan - More Details</h4>
+        {% for student in student %}
+            <p>Student Loan ID: {{ student.sl_uid }}</p>
+            <p>Date Opened: {{ student.date_open }}</p>
+            <p>Student ID: {{ student.student_id }}</p>
+            <p>Degree Type: {{ student.degree_type }}</p>
+            <p>Graduation Month: {{ student.grad_month }}</p>
+            <p>Graduation Year: {{ student.grad_year }}</p>
+        {% endfor %}
+        <!-- Institute details -->
+        <h4>Student Loan - Institute Details</h4>
+        {% for institute in institute %}
+            <p>Institute Code: {{ institute.inst_code }}</p>
+            <p>Institute Name: {{ institute.inst_name }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Home Loan details -->
+    {% if home %}
+    <div class="details">
+        <h4>Home Loan - More Details</h4>
+        {% for home in home %}
+            <p>Home Loan ID: {{ home.hl_uid }}</p>
+            <p>Date Opened: {{ home.date_open }}</p>
+            <p>Built Year: {{ home.built_year }}</p>
+        {% endfor %}
+        <!-- Insurance details -->
+        <h4>Home Loan - Insurance Details</h4>
+        {% for insurance in insurance %}
+            <p>Insurance Account Number: {{ insurance.ins_acct_no }}</p>
+            <p>Insurance Company: {{ insurance.ins_company }}</p>
+            <p>Insurance Address: {{ insurance.ins_street }}, {{ insurance.ins_city }}, {{ insurance.ins_state }}, {{ insurance.ins_zipcode }}</p>
+            <p>Yearly Premium: {{ insurance.yearly_prm }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

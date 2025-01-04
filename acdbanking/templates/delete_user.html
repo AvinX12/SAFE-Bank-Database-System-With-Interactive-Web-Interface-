@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Existing Admin</title>
+</head>
+<body>
+    <h2>Delete Existing Admin</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <button type="submit">Delete User</button>
+    </form>
+    <a href="{% url 'admin_page' username=admin_username %}" class="btn btn-secondary">Cancel</a>
+</body>
+</html>
