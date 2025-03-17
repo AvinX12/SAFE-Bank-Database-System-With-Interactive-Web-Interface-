@@ -1,4 +1,4 @@
-# SAFE-Bank-Database-System-With-Interactive-Web-Interface
+# Banking-Application-Database-System-With-Interactive-Web-Interface 
 
 CS-GY 6083 Principles of Database Systems || Project || Spring 2024 <br />
 New York University (NYU) Tandon School of Engineering <br /> <br />
